@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahzeeb-ul-Islam Academy</title>
+    <link rel="JavaScript" href="/server.js">
+    <link rel="icon" type="2/jpeg" href="2.jpeg">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap">
+
+    <style>
+        /* --- Theme Variable Definitions --- */
+        :root {
+            --primary-blue: #1c3d75;       /* Rich Deep Blue from school banner */
+            --accent-pink: #e91e63;        /* Vibrant friendly pink for highlights */
+            --light-pink: #fdf2f4;         /* Soft pink backgrounds */
+            --pure-white: #ffffff;         /* Clean background white */
+            --text-dark: #2d3748;          /* High contrast text color */
+            --text-muted: #718096;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Global Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: #f7fafc;
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar Styling --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: var(--pure-white);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 55px;
+            width: 55px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .school-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: -0.5px;
+        }
+
+        .school-name .accent-text {
+            color: var(--accent-pink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-pink);
+        }
+
+        /* Underline effect for active link */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-pink);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* --- Hero Section Styling --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, var(--primary-blue) 60%, var(--light-pink) 100%);
+            color: var(--pure-white);
+            min-height: 80vh;
+            gap: 40px;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content .badge {
+            background-color: var(--accent-pink);
+            color: var(--pure-white);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-pink);
+            color: var(--pure-white);
+        }
+
+        .btn-primary:hover {
+            background-color: #d81b60;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--pure-white);
+            border: 2px solid var(--pure-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--pure-white);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Showcase Image in Hero styling */
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-showcase-img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 15px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            border: 5px solid var(--pure-white);
+            object-fit: cover;
+        }
+
+        /* --- Features Section Styling --- */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 5%;
+            margin-top: -50px; /* Overlaps hero section gracefully */
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background-color: var(--pure-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            max-width: 350px;
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-blue);
+        }
+
+        .card.highlighted {
+            border-top: 4px solid var(--accent-pink);
+            background-color: var(--light-pink);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card .icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .card.highlighted .icon {
+            color: var(--accent-pink);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--primary-blue);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* --- Responsive Media Queries --- */
+        @media (max-width: 992px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 40px;
+            }
+            .hero-content {
+                max-width: 100%;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .features {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+            .card {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none; /* Controlled by JavaScript toggling active class */
+                flex-direction: column;
+                position: absolute;
+                top: 85px;
+                left: 0;
+                width: 100%;
+                background-color: var(--pure-white);
+                padding: 20px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                gap: 15px;
+                text-align: center;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        footer{background:#0047ab;color:#fff;text-align:center;padding:30px}
+@media(max-width:768px){nav{flex-direction:column}.hero h1{font-size:40px}}
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar">
+        <div class="logo-container">
+            <!-- 2.jpeg used for Website Logo -->
+            <img src="2.jpeg" alt="Tahzeeb-ul-Islam Logo" class="logo-img">
+            <span class="school-name">Tahzeeb-ul-Islam <span class="accent-text">Academy</span></span>
+        </div>
+        
+        <nav class="nav-links" id="navLinks">
+            <a href="Home.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="admistion.html">Admissions</a>
+            <a href="academics.html">Academics</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="badge">Welcome to Academic Excellence</span>
+            <h1>Tahzeeb-ul-Islam Academy</h1>
+            <p>"Education is the most powerful weapon which you can use to change the world." Learn today, lead tomorrow.</p>
+            <div class="hero-buttons">
+                <a href="admistion.html" class="btn btn-primary">Admissions Open</a>
+                <a href="compus.html" class="btn btn-secondary">Explore Campus</a>
+            </div>
+        </div>
+        
+        <!-- 3.jpeg used as the Hero Section Showcase Image -->
+        <div class="hero-image-container">
+            <img src="3.jpeg" alt="Tahzeeb-ul-Islam Campus Front" class="hero-showcase-img">
+        </div>
+    </section>
+
+    <!-- Brief Info Cards Section -->
+    <section class="features">
+        <div class="card">
+            <i class="fas fa-book-reader icon"></i>
+            <h3>Quality Education</h3>
+            <p>English language, computer courses, and modern learning styles designed for personality development.</p>
+        </div>
+        <div class="card highlighted">
+            <i class="fas fa-graduation-cap icon"></i>
+            <h3>Islamic Environment</h3>
+            <p>Cultivating morals, values, and strong characters deeply rooted in ethical standards.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-child icon"></i>
+            <h3>Bright Future</h3>
+            <p>Providing a safe learning inn and comprehensive coaching center for our young leaders.</p>
+        </div>
+    </section>
+
+
+    <footer id="contact">
+<h2>Tahzeeb-ul-Islam Academy</h2>
+<p>Business & Professional Co-operative Housing Society, Plot C-5, Block C, Scheme 33, Karachi</p>
+<p>📞 0349-1303880</p>
+<p>© 2026 SKD Development</p>
+</footer>
+
+    <!-- Interactive Navigation JavaScript -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        // Toggle Hamburger Menu on mobile screens
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Toggle hamburger icon between bars and X
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile navigation menu when a menu option is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
